@@ -1,0 +1,6 @@
+{
+  // should ok
+  "json5": {
+    "foo": bar'
+  }
+}
