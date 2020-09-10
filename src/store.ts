@@ -7,7 +7,7 @@ export interface Store {
   readonly readOnly: boolean;
   readonly store: Record<string, any>;
 
-  get<T>(key: string): T;
+  get<T>(key?: string): T;
   set(key: string, value: any): boolean;
   reset(): boolean;
   clear(key: string): boolean;

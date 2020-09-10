@@ -69,12 +69,18 @@ export class Config {
     return this.add(<string>key, options);
   }
 
-  defaults(options?: PossibleLiteralOptions) {
+  defaults(options: PossibleLiteralOptions = {}) {
+    if (!options.store) {
+      options = {store: options};
+    }
     options = Object.assign({type: 'literal'}, options);
     return this.add('defaults', options);
   }
 
-  overrides(options?: PossibleLiteralOptions) {
+  overrides(options: PossibleLiteralOptions = {}) {
+    if (!options.store) {
+      options = {store: options};
+    }
     options = Object.assign({type: 'literal'}, options);
     return this.add('overrides', options);
   }
@@ -193,7 +199,7 @@ export class Config {
     return this;
   }
 
-  get<T = any>(key: string): T | undefined {
+  get<T = any>(key?: string): T | undefined {
     //
     // Otherwise the asynchronous, hierarchical `get` is
     // slightly more complicated because we do not need to traverse

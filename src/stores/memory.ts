@@ -62,7 +62,7 @@ export class Memory extends AbstractStore {
   // #### @key {string} Key to retrieve for this instance.
   // Retrieves the value for the specified key (if any).
   //
-  get(key: string) {
+  get(key?: string) {
     let target: any = this._store;
     const path = decodeKey(key, this.logicalSeparator);
 
