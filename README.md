@@ -1,5 +1,8 @@
 # @tib/config
 
+[![Build](https://gitr.net/tibjs/config/badges/master/pipeline.svg)](https://gitr.net/tibjs/config)
+[![Coverage](https://gitr.net/tibjs/config/badges/master/coverage.svg)](https://gitr.net/tibjs/config)
+
 > A Hierarchical node.js configuration library with files, environment variables, command-line arguments, and atomic
 > object merging.
 
