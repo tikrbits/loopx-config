@@ -33,14 +33,14 @@ conf.file('custom', './config2.json');
 conf.file('app', {
   file: 'config.json',
   dir: __dirname,
-  search: true
+  search: true,
 });
 
 //
 // 5. Any default values
 //
 conf.defaults({
-  'if nothing else': 'use this value'
+  'if nothing else': 'use this value',
 });
 
 console.log(conf.get());

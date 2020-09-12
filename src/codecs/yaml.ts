@@ -31,6 +31,7 @@ export interface YamlCodecOptions {
 export class YamlCodec implements Codec {
   readonly lang: string = 'yaml';
   readonly extensions: string[] = ['.yml', '.yaml'];
+  readonly require = ['js-yaml'];
 
   constructor(protected options: Partial<YamlCodecOptions> = {}) {}
 

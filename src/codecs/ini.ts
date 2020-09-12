@@ -8,6 +8,7 @@ export interface IniCodecOptions {
 export class IniCodec implements Codec {
   readonly lang: string = 'ini';
   readonly extensions: string[] = ['.ini'];
+  readonly requires = ['ini'];
 
   decode(str: string): any {
     return require('ini').decode(str);

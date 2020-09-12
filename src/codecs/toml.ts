@@ -10,6 +10,7 @@ export interface TomlCodecOptions {
 export class TomlCodec implements Codec {
   readonly lang: string = 'toml';
   readonly extensions: string[] = ['.toml'];
+  readonly require = ['@iarna/toml'];
 
   constructor(protected options: Partial<TomlCodecOptions> = {}) {}
 

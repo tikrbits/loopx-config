@@ -12,6 +12,8 @@ import crypto from 'crypto';
 import {Memory, MemoryOptions} from './memory';
 import {Codec} from '../types';
 import * as codecs from '../codecs';
+import {detect} from '../detect';
+import {checkCodecRequires} from '../codecs';
 
 export interface FileOptions extends MemoryOptions {
   file: string;
@@ -54,7 +56,6 @@ export class File extends Memory {
 
     this.file = options.file;
     this.dir = options.dir ?? process.cwd();
-    this.codec = options.codec ?? codecs.json;
     this.spacing = options.spacing ?? 2;
 
     if (options.secure) {
@@ -76,6 +77,19 @@ export class File extends Memory {
 
     if (options.search) {
       this.search(this.dir);
+    }
+
+    if (options.codec) {
+      this.codec = checkCodecRequires(options.codec);
+    } else if (this.file) {
+      const detected = detect(this.file);
+      if (detected) {
+        this.file = detected.file;
+        this.codec = checkCodecRequires(detected.codec);
+      }
+    }
+    if (!this.codec) {
+      this.codec = codecs.json;
     }
   }
 

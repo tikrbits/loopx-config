@@ -1,4 +1,4 @@
-import {itCodecCommons} from './commons';
+import {itCodecCommons} from './codec-commons';
 import {TomlCodec} from '../../codecs';
 
 describe('codec/ini', function () {

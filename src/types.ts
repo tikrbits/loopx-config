@@ -10,6 +10,7 @@ export interface FileReadOptions {
 export interface Codec {
   readonly lang: string;
   readonly extensions: string[];
+  readonly requires?: string[];
   encode(obj: any, options?: any): string;
   decode(str: string, options?: any): any;
 }

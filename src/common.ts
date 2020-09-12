@@ -9,7 +9,6 @@ import {RuntimeError} from './errors';
 // If given null or undefined it should return an empty path.
 // '' should still be respected as a path.
 //
-
 export function decodeKey(key?: string | null, separator?: string) {
   separator = separator ?? ':';
   return key ? key.split(separator) : [];
@@ -104,4 +103,22 @@ export function transform(map: Record<string, any>, fn: TransformFn) {
       accumulator[pair.key] = pair.value;
       return accumulator;
     }, {});
+}
+
+export function checkPackages(names: string[]): string[] | undefined {
+  const modules: string[] = [];
+
+  for (const name of names) {
+    try {
+      require(name);
+    } catch (e) {
+      if (e.code === 'MODULE_NOT_FOUND' && e.message && e.message.indexOf(name) > 0) {
+        modules.push(name);
+      }
+    }
+  }
+
+  if (modules.length) {
+    return modules;
+  }
 }

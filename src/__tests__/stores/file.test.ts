@@ -11,20 +11,58 @@ import {expect} from '@tib/testlab';
 import tmp, {DirResult} from 'tmp';
 import {File} from '../../stores';
 import {yaml} from '../../codecs';
+import {MissingRequiredCodec} from '../mocks/missing-required-codec';
 
 const sample = require('../fixtures/data').data;
 
 describe('stores/file', () => {
+  let dir: DirResult;
+
+  before(() => {
+    dir = tmp.dirSync();
+  });
+
+  after(() => {
+    fs.removeSync(dir.name);
+  });
+
   describe('load', () => {
     describe('with a valid JSON file', () => {
-      const filePath = path.join(__dirname, '..', 'fixtures', 'store.json');
-      fs.writeFileSync(filePath, JSON.stringify(sample, null, 2));
+      let file: string;
+
+      beforeEach(() => {
+        file = `${dir.name}/sample.json`;
+        fs.writeFileSync(file, JSON.stringify(sample, null, 2));
+      });
+
+      afterEach(() => {
+        fs.removeSync(file);
+      });
 
       it('the load() method should load the data correctly', async () => {
-        const store = new File({file: filePath});
+        const store = new File({file});
         expect(await store.load()).eql(sample);
       });
     });
+
+    describe('with a valid Yaml file', function () {
+      let file: string;
+
+      beforeEach(() => {
+        file = `${dir.name}/sample.yaml`;
+        fs.writeFileSync(file, yaml.encode(sample));
+      });
+
+      afterEach(() => {
+        fs.removeSync(file);
+      });
+
+      it('the load() method should load the data correctly', async () => {
+        const store = new File({file});
+        expect(await store.load()).eql(sample);
+      });
+    });
+
     describe('with a malformed JSON file', () => {
       const filePath = path.join(__dirname, '..', 'fixtures', 'malformed.json');
 
@@ -33,6 +71,7 @@ describe('stores/file', () => {
         await expect(store.load()).rejectedWith(/malformed\.json/);
       });
     });
+
     describe('with a valid UTF8 JSON file that contains a BOM', () => {
       const filePath = path.join(__dirname, '..', 'fixtures', 'bom.json');
       const store = new File({file: filePath});
@@ -55,6 +94,14 @@ describe('stores/file', () => {
       it('the loadSync() method should load the data correctly', () => {
         const data = store.loadSync();
         expect(data).eql(store.store);
+      });
+    });
+
+    describe('with codec missing requires', function () {
+      it('should throw CodecRequiresMissingError error', function () {
+        expect(() => new File({file: 'sample.mrc', codec: new MissingRequiredCodec()})).throw(
+          /are not found that required by/,
+        );
       });
     });
   });
@@ -143,15 +190,6 @@ describe('stores/file', () => {
     });
   });
   describe('search', () => {
-    let dir: DirResult;
-    before(() => {
-      dir = tmp.dirSync();
-    });
-
-    after(() => {
-      dir.removeCallback();
-    });
-
     it('the search() method when the target file exists higher in the directory tree should update the file appropriately', () => {
       const filePath = path.join(dir.name, '.config');
       fs.writeFileSync(filePath, JSON.stringify(sample, null, 2));

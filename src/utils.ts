@@ -60,7 +60,7 @@ export async function traverse<T = any, R = any>(
 ): Promise<R | undefined> {
   const values = Object.values(obj);
   for (const value of values) {
-    const result = fn(value);
+    const result = await fn(value);
     if (result !== undefined) {
       return result;
     }
