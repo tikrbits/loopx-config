@@ -390,3 +390,5 @@ export class Config {
     );
   }
 }
+
+export const conf = new Config();

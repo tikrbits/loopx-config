@@ -30,7 +30,7 @@ export function detect(file: string, lang?: string): Detected | undefined {
       }
     }
   } else {
-    for (const c of codecs) {
+    for (const c of Object.values(codecs)) {
       for (const ext of c.extensions) {
         const f = file + ext;
         if (fs.existsSync(f)) {

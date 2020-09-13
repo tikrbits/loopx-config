@@ -13,12 +13,12 @@ import {Memory, MemoryOptions} from './memory';
 import {Codec} from '../types';
 import * as codecs from '../codecs';
 import {detect} from '../detect';
-import {checkCodecRequires} from '../codecs';
+import {checkCodecRequires, resolveCodec} from '../codecs';
 
 export interface FileOptions extends MemoryOptions {
   file: string;
   dir: string;
-  codec: Codec;
+  codec: Codec | string;
   secure: string | Buffer | FileSecure;
   spacing: number;
   search: boolean;
@@ -80,7 +80,11 @@ export class File extends Memory {
     }
 
     if (options.codec) {
-      this.codec = checkCodecRequires(options.codec);
+      const codec = resolveCodec(options.codec);
+      if (!codec) {
+        throw new Error(`The codec is not supported with name: ${options.codec}`)
+      }
+      this.codec = checkCodecRequires(codec);
     } else if (this.file) {
       const detected = detect(this.file);
       if (detected) {

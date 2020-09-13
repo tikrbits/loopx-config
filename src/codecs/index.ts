@@ -1,4 +1,4 @@
-import {Codec} from '../types';
+import {Codec, isCodec} from '../types';
 import {yaml} from './yaml';
 import {json} from './json';
 import {ini} from './ini';
@@ -11,7 +11,7 @@ export * from './ini';
 export * from './yaml';
 export * from './toml';
 
-export const codecs: Codec[] = [yaml, json, ini, toml];
+export const codecs: Record<string, Codec> = {yaml, json, ini, toml};
 
 export interface FindLoaderOptions {
   lang?: string;
@@ -21,10 +21,20 @@ export interface FindLoaderOptions {
 export function findCodec(options: FindLoaderOptions) {
   const {lang, extension} = options;
   if (lang) {
-    return codecs.find(c => c.lang === lang.toLowerCase());
+    return Object.values(codecs).find(c => c.lang === lang.toLowerCase());
   }
   if (extension) {
-    return codecs.find(c => c.extensions.includes(extension.toLowerCase()));
+    return Object.values(codecs).find(c => c.extensions.includes(extension.toLowerCase()));
+  }
+}
+
+export function resolveCodec(options: Codec | string | FindLoaderOptions): Codec | undefined {
+  if (isCodec(options)) {
+    return options;
+  } else if (typeof options === 'string') {
+    return codecs[options.toLowerCase()];
+  } else {
+    return findCodec(options);
   }
 }
 

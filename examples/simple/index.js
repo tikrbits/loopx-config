@@ -1,6 +1,4 @@
-const {Config} = require('../..');
-
-const conf = new Config();
+const {conf} = require('../..');
 
 //
 // 1. any overrides

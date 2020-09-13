@@ -18,3 +18,10 @@ export interface Codec {
 export interface CodecCtor<T extends Codec = Codec> {
   new (...args: any[]): T;
 }
+
+export function isCodec(x: any): x is Codec {
+  return x
+    && typeof x === 'object'
+    && typeof x.encode === 'function'
+    && typeof x.decode === 'function'
+}
