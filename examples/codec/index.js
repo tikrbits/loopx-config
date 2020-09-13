@@ -12,7 +12,6 @@ conf1.file({
 console.log(conf1.get());
 // => { yaml: { foo: 'bar' } }
 
-
 const conf2 = new Config();
 
 // auto detect codec

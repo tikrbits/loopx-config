@@ -82,7 +82,7 @@ export class File extends Memory {
     if (options.codec) {
       const codec = resolveCodec(options.codec);
       if (!codec) {
-        throw new Error(`The codec is not supported with name: ${options.codec}`)
+        throw new Error(`The codec is not supported with name: ${options.codec}`);
       }
       this.codec = checkCodecRequires(codec);
     } else if (this.file) {
