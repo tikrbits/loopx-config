@@ -87,9 +87,14 @@ export class Memory extends AbstractStore {
   // #### @value {literal|Object} Value for the specified key
   // Sets the `value` for the specified `key` in this instance.
   //
-  set(key: string, value: any) {
+  doSet(key: string | any, value?: any) {
     if (this.readOnly) {
       return false;
+    }
+
+    if (typeof key !== 'string' && value === undefined) {
+      value = key;
+      key = '';
     }
 
     let target = this._store;

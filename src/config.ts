@@ -252,7 +252,10 @@ export class Config {
   // #### @callback {function} **Optional** Continuation to respond to when complete.
   // Sets the `value` for the specified `key` in this instance.
   //
-  set(key: string, value: any): boolean | undefined {
+
+  set(obj: any): boolean | undefined;
+  set(key: string, value: any): boolean | undefined;
+  set(key: string | any, value?: any): boolean | undefined {
     return traverseSync(this.stores, store => {
       if (!store.readOnly) {
         return store.set(key, value);

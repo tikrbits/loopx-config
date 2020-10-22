@@ -15,6 +15,7 @@ describe('config/stores/memory', () => {
   describe('When using the config memory store', () => {
     const store = new Memory();
     it('the set() method should respond with true', () => {
+      expect(store.set({fruit: 'apple'})).true();
       expect(store.set('foo:bar:bazz', 'buzz')).true();
       expect(store.set('falsy:number', 0)).true();
       expect(store.set('falsy:string:empty', '')).true();
@@ -24,6 +25,7 @@ describe('config/stores/memory', () => {
     });
 
     it('the get() method should respond with the correct value', () => {
+      expect(store.get('fruit')).eql('apple');
       expect(store.get('foo:bar:bazz')).eql('buzz');
       expect(store.get('falsy:number')).eql(0);
       expect(store.get('falsy:string:empty')).eql('');
