@@ -1,6 +1,6 @@
 {
   "name": "@loopx/config",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "A Hierarchical node.js configuration library with files, environment variables, command-line arguments, and atomic object merging.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
