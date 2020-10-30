@@ -5,7 +5,7 @@
  *
  */
 
-import {expect} from '@tib/testlab';
+import {expect} from '@loopback/testlab';
 import {Literal} from '../../stores';
 
 describe('config/stores/literal, An instance of config.Literal', () => {

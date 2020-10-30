@@ -5,7 +5,7 @@
  *
  */
 
-import {expect} from '@tib/testlab';
+import {expect} from '@loopback/testlab';
 import {Memory} from '../../stores';
 import {fixture} from '../support';
 

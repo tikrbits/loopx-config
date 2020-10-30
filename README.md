@@ -1,7 +1,4 @@
-# @tib/config
-
-[![Build](https://gitr.net/tibjs/config/badges/master/pipeline.svg)](https://gitr.net/tibjs/config)
-[![Coverage](https://gitr.net/tibjs/config/badges/master/coverage.svg)](https://gitr.net/tibjs/config)
+# @loopx/config
 
 > A Hierarchical node.js configuration library with files, environment variables, command-line arguments, and atomic
 > object merging.
@@ -13,7 +10,7 @@ for yaml, ini and toml formats.
 
 ```js
 const path = require('path');
-const {Config, yaml} = require('@tib/config');
+const {Config, yaml} = require('@loopx/config');
 
 const conf1 = new Config();
 
@@ -40,13 +37,13 @@ console.log(conf1.get());
 ## Installation
 
 ```bash
-$ npm install @tib/config --save
+$ npm install @loopx/config --save
 ```
 
 ## Example
 
 ```js
-const {Config} = require('@tib/config');
+const {Config} = require('@loopx/config');
 
 const conf = new Config();
 
@@ -122,7 +119,7 @@ look at the options available to you
 A sane default for this could be:
 
 ```js
-const {conf} = require('@tib/config');
+const {conf} = require('@loopx/config');
 
 //
 // 1. any overrides

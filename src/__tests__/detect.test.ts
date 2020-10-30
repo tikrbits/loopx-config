@@ -1,4 +1,4 @@
-import {expect} from '@tib/testlab';
+import {expect} from '@loopback/testlab';
 import {fixture} from './support';
 import {detect} from '../detect';
 import {yaml} from '../codecs';

@@ -9,7 +9,7 @@ import fs from 'fs-extra';
 import path from 'path';
 import * as s from './support';
 import {loadFiles, loadFilesSync, traverse, traverseSync} from '../utils';
-import {expect} from '@tib/testlab';
+import {expect} from '@loopback/testlab';
 
 const mergeDir = path.join(__dirname, 'fixtures', 'merge');
 const files = fs.readdirSync(mergeDir).map(function (f) {

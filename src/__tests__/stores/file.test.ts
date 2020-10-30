@@ -7,7 +7,7 @@
 
 import fs from 'fs-extra';
 import path from 'path';
-import {expect} from '@tib/testlab';
+import {expect} from '@loopback/testlab';
 import tmp, {DirResult} from 'tmp';
 import {File} from '../../stores';
 import {yaml} from '../../codecs';

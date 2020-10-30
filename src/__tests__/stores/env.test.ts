@@ -5,7 +5,7 @@
  *
  */
 
-import {expect} from '@tib/testlab';
+import {expect} from '@loopback/testlab';
 import {Env} from '../../stores';
 
 describe('stores/env, An instance of Env', () => {

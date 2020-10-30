@@ -8,7 +8,7 @@
 
 import fs from 'fs-extra';
 import path from 'path';
-import {expect} from '@tib/testlab';
+import {expect} from '@loopback/testlab';
 import execa from 'execa';
 import {Store} from '../store';
 

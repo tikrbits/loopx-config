@@ -1,5 +1,5 @@
 import {CodecCtor} from '../../types';
-import {expect} from '@tib/testlab';
+import {expect} from '@loopback/testlab';
 
 export function itCodecCommons(ctor: CodecCtor) {
   describe(`${ctor.name}/commons`, function () {

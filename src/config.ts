@@ -1,5 +1,5 @@
-import isEqual from '@tib/utils/is/equal';
-import isPlainObject from '@tib/utils/is/plainObject';
+import isEqual from '@loopx/utils/is/equal';
+import isPlainObject from '@loopx/utils/is/plainObject';
 import {Store, StoreOptions} from './store';
 import {
   Argv,

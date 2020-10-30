@@ -7,7 +7,7 @@
 
 import yargs from 'yargs';
 import {Argv} from '../../stores';
-import {expect} from '@tib/testlab';
+import {expect} from '@loopback/testlab';
 
 describe('stores/argv, An instance of Argv', () => {
   it('should have the correct methods defined', () => {
