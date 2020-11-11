@@ -10,7 +10,7 @@ import path from 'path';
 import {expect} from '@loopback/testlab';
 import tmp, {DirResult} from 'tmp';
 import {File} from '../../stores';
-import {yaml} from '../../codecs';
+import {json5, yaml} from '../../codecs';
 import {MissingRequiredCodec} from '../mocks/missing-required-codec';
 
 const sample = require('../fixtures/data').data;
@@ -33,6 +33,24 @@ describe('stores/file', () => {
       beforeEach(() => {
         file = `${dir.name}/sample.json`;
         fs.writeFileSync(file, JSON.stringify(sample, null, 2));
+      });
+
+      afterEach(() => {
+        fs.removeSync(file);
+      });
+
+      it('the load() method should load the data correctly', async () => {
+        const store = new File({file});
+        expect(await store.load()).eql(sample);
+      });
+    });
+
+    describe('with a valid JSON5 file', function () {
+      let file: string;
+
+      beforeEach(() => {
+        file = `${dir.name}/sample.json5`;
+        fs.writeFileSync(file, json5.encode(sample));
       });
 
       afterEach(() => {

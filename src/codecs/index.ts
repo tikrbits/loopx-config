@@ -1,17 +1,19 @@
 import {Codec, isCodec} from '../types';
 import {yaml} from './yaml';
 import {json} from './json';
+import {json5} from './json5';
 import {ini} from './ini';
 import {toml} from './toml';
 import {checkPackages} from '../common';
 import {CodecRequiresMissingError} from '../errors';
 
 export * from './json';
+export * from './json5';
 export * from './ini';
 export * from './yaml';
 export * from './toml';
 
-export const codecs: Record<string, Codec> = {yaml, json, ini, toml};
+export const codecs: Record<string, Codec> = {yaml, json, json5, ini, toml};
 
 export interface FindLoaderOptions {
   lang?: string;
