@@ -97,6 +97,10 @@ export class File extends Memory {
     }
   }
 
+  exists() {
+    return fs.existsSync(this.file);
+  }
+
   //
   // ### function save (value, callback)
   // #### @value {Object} _Ignored_ Left here for consistency
@@ -141,7 +145,7 @@ export class File extends Memory {
   // Responds with an Object representing all keys associated in this instance.
   //
   async load() {
-    if (!(await fs.pathExists(this.file))) {
+    if (!this.exists()) {
       this._store = {};
       return this.store;
     }
@@ -170,7 +174,7 @@ export class File extends Memory {
   // and responds appropriately.
   //
   loadSync() {
-    if (!fs.existsSync(this.file)) {
+    if (!this.exists()) {
       this._store = {};
       return this.store;
     }
