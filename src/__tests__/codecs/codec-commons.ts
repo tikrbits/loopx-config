@@ -6,7 +6,7 @@ export function itCodecCommons(ctor: CodecCtor) {
     it('should encode and decode', function () {
       const obj = {foo: 'bar'};
       const codec = new ctor();
-      expect(codec.decode(codec.encode(obj))).eql(obj);
+      expect(codec.decode(codec.encode(obj))).match(obj);
     });
   });
 }

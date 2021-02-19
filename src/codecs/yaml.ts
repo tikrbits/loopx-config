@@ -36,11 +36,11 @@ export class YamlCodec implements Codec {
   constructor(protected options: Partial<YamlCodecOptions> = {}) {}
 
   decode(str: string, options?: YamlCodecOptions): any {
-    return require('js-yaml').safeLoad(str, options);
+    return require('js-yaml').load(str, options);
   }
 
   encode(obj: any, options?: YamlCodecOptions): string {
-    return require('js-yaml').safeDump(obj, options);
+    return require('js-yaml').dump(obj, options);
   }
 }
 
